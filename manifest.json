@@ -1,0 +1,12 @@
+{
+    "manifest_version": 2,
+    "name": "Mzdová kalkulačka",
+    "version": "1.0",
+    "description": "Vypočíta mzdu.",
+    "content_scripts": [
+      {
+        "matches": ["*://*.mymcd.eu/*"],
+        "js": ["script.js"]
+      }
+    ]
+  }
