@@ -39,6 +39,7 @@ function calculate(){
         workHours.push([temp[0].innerText,temp[1].innerText,temp[0].innerText==""?null:hoursWrapper[i].classList.length>2?true:false])
     }
     console.log(workHours)
+    var breaks = 0
     for (i=0;i<workHours.length;i++){
         if (workHours[i][2]==null){
             console.log("skipped: "+workHours[i])
@@ -52,6 +53,10 @@ function calculate(){
         let end = new Date("2007-01-01T"+temp[1].split(" ").join(":")).getHours()
         let diff = end - start
         console.log(diff)
+        if (diff >= 6){
+            breaks += 1
+            diff = diff - 0.30
+        }
         if (temp[2]===false){
             workHours[i] = []
             workHours[i].push(diff*4.8)
@@ -70,6 +75,6 @@ function calculate(){
         map[workHours[i][1]==true?"w":"d"] += 1
     }
     console.log(sum)
-    document.body.innerHTML += `<div style=\"margin: 0 auto; display: table; background-color: hsl(96, 43%, 58%); border-radius: 25px; padding: 15px;\">Your salary for this month will be: ${sum.toFixed(2)}€<br>Normal days: ${map.d}<br>Weekend days: ${map.w}</div>`
+    document.body.innerHTML += `<div style=\"margin: 0 auto; display: table; background-color: hsl(96, 43%, 58%); border-radius: 25px; padding: 15px;\">Your salary for this month will be: ${sum.toFixed(2)}€<br>Normal days: ${map.d}<br>Weekend days: ${map.w}<br>Breaks: ${breaks}</div>`
     return
 }
